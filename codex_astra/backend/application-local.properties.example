@@ -1,0 +1,9 @@
+# Copy to application-local.properties in backend, then set real values.
+# This file is read when the backend runs with backend as working directory.
+DB_URL=jdbc:oracle:thin:@//192.168.45.2:1521/XEPDB1
+DB_USERNAME=USERSTK9
+DB_PASSWORD=replace-me
+JWT_SECRET=replace-with-a-random-secret-of-at-least-32-bytes
+REDIS_HOST=localhost
+REDIS_PORT=6380
+COOKIE_SECURE=false

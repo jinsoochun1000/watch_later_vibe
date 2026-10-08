@@ -1,0 +1,44 @@
+server:
+  port: ${PORT:8080}
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+spring:
+  application:
+    name: watchlater
+  config:
+    import: optional:file:./application-local.properties
+  datasource:
+    url: ${DB_URL:jdbc:oracle:thin:@//192.168.45.2:1521/XEPDB1}
+    username: ${DB_USERNAME:USERSTK9}
+    password: ${DB_PASSWORD}
+  jpa:
+    open-in-view: false
+    database-platform: org.hibernate.community.dialect.OracleLegacyDialect
+    properties:
+      hibernate.jdbc.fetch_size: 100
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    table: WL_ASTRA_SCHEMA_HISTORY
+    baseline-on-migrate: true
+    baseline-version: 0
+    clean-disabled: true
+  data:
+    redis:
+      repositories:
+        enabled: false
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6380}
+      password: ${REDIS_PASSWORD:}
+      timeout: 3s
+app:
+  jwt-secret: ${JWT_SECRET}
+  cookie-secure: ${COOKIE_SECURE:false}
+  seed-username: ${SEED_USERNAME:stk1}
+  seed-password: ${SEED_PASSWORD:stk1}
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

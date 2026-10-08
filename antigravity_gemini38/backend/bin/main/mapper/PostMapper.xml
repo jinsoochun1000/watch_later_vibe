@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.tkinfo.watchlater.mapper.PostMapper">
+
+    <select id="getPostStatistics" resultType="map">
+        SELECT
+            COUNT(*) AS "totalCount",
+            NVL(SUM(CASE WHEN STATUS = 'NEW' THEN 1 ELSE 0 END), 0) AS "newCount",
+            NVL(SUM(CASE WHEN STATUS = 'COMPLETED' THEN 1 ELSE 0 END), 0) AS "completedCount"
+        FROM WLA_POSTS
+    </select>
+
+    <select id="countByStatus" resultType="int">
+        SELECT COUNT(*)
+        FROM WLA_POSTS
+        WHERE STATUS = #{status}
+    </select>
+
+</mapper>
