@@ -1,0 +1,4 @@
+# Copy to application-local.properties. This real file is excluded from Git.
+DB_PASSWORD=replace-with-oracle-password
+# Generate at least 32 random bytes. Never reuse this example value.
+JWT_SECRET=replace-with-a-random-secret-at-least-32-bytes-long

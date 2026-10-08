@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: watchlater
+  config:
+    import: optional:file:./config/application-local.properties
+  datasource:
+    url: ${DB_URL:jdbc:oracle:thin:@//192.168.45.2:1521/XEPDB1}
+    username: ${DB_USERNAME:USERSTK9}
+    password: ${DB_PASSWORD}
+  jpa:
+    open-in-view: false
+    database-platform: org.hibernate.community.dialect.OracleLegacyDialect
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    table: WLC_FLYWAY_HISTORY
+    baseline-on-migrate: true
+    baseline-version: 0
+  data:
+    redis:
+      repositories:
+        enabled: false
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      timeout: 3s
+logging:
+  level:
+    org.springframework.web: INFO
+    kr.co.tkinfo.watchlater.auth: INFO
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+app:
+  jwt-secret: ${JWT_SECRET}
+  cookie-secure: ${COOKIE_SECURE:false}
+  allowed-origin: ${ALLOWED_ORIGIN:http://localhost:5173}
+  seed:
+    enabled: ${SEED_ENABLED:true}
+    username: ${SEED_USERNAME:stk1}
+    password: ${SEED_PASSWORD:stk1}
